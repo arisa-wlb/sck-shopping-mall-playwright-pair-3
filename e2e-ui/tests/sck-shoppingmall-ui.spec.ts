@@ -24,7 +24,12 @@ test("Login สำเร็จด้วย username เท่ากับ user_1
   await test.step("ตรวจสอบข้อมูลราคา และแต้มที่จะได้รับ", async () => {
     await expect(page.locator("#product-detail-product-name")).toHaveText("Balance Training Bicycle");
     await expect(page.locator("#product-detail-price-thb")).toHaveText("฿4,314.60");
-    await expect(page.locator("#product-detai-point")).toHaveText("43 points");
+    await expect(page.locator("#product-detail-point")).toHaveText("43 Points");
   })
+  await test.step("เลือกจำนวนสินค้า และกด Add to Cart", async () => {
+    await page.locator("[id='product-detail-quantity-increment-btn']").click({ clickCount : 2});
+    await page.locator("[id='product-detail-add-to-cart-btn']").click();
+    await expect(page.locator("[id='header-menu-cart-badge']")).toHaveText('1');
+  });
 });
 
