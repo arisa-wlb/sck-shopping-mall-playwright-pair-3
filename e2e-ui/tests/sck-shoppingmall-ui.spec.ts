@@ -10,7 +10,10 @@ test("Login สำเร็จด้วย username เท่ากับ user_1
     await page.locator("#login-password-input").fill("P@ssw0rd")
     await page.locator("#login-btn").click();
   });
-  
-  
+
+  await test.step("ค้นหาสินค้าด้วยคำว่า Bicycle", async () => {
+    await page.locator("#l")
+
+  });
 });
 
