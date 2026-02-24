@@ -21,6 +21,10 @@ test("Login สำเร็จด้วย username เท่ากับ user_1
     await expect(page.locator("#product-card-price-1")).toHaveText("฿4,314.60");
     await page.locator("#product-card-name-1").click();
   });
-
+  await test.step("ตรวจสอบข้อมูลราคา และแต้มที่จะได้รับ", async () => {
+    await expect(page.locator("#product-detail-product-name")).toHaveText("Balance Training Bicycle");
+    await expect(page.locator("#product-detail-price-thb")).toHaveText("฿4,314.60");
+    await expect(page.locator("#product-detai-point")).toHaveText("43 points");
+  })
 });
 
