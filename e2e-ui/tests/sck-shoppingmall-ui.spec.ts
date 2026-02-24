@@ -12,8 +12,13 @@ test("Login สำเร็จด้วย username เท่ากับ user_1
   });
 
   await test.step("ค้นหาสินค้าด้วยคำว่า Bicycle", async () => {
-    await page.locator("#l")
+    await page.locator("#search-product-input").fill("Bicycle");
+    await page.locator("#search-product-input").press("Enter");
+  });
 
+  await test.step("ตรวจสอบผลการค้นหาสินค้า", async () => {
+    await expect(page.locator("#product-card-name-1")).toHaveText("Balance Training Bicycle");
+    await expect(page.locator("#product-card-price-1")).toHaveText("฿4,314.60");
   });
 });
 
