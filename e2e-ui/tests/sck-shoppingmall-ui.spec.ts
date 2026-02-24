@@ -31,5 +31,13 @@ test("Login สำเร็จด้วย username เท่ากับ user_1
     await page.locator("[id='product-detail-add-to-cart-btn']").click();
     await expect(page.locator("[id='header-menu-cart-badge']")).toHaveText('1');
   });
+  await test.step('ตรวจสอบข้อมูลในตะกร้า พบชื่อสินค้า Balance Training Bicycle จำนวน 3 ชิ้น ราคา ฿12,943.80 จำนวนแต้ม 129 Points และยอดรวมราคา ฿12,943.80', async ({ }) => {
+    await page.locator('#header-menu-cart-btn').click();
+    await expect(page.locator('#product-1-name')).toHaveText('Balance Training Bicycle');
+    await expect(page.locator('#product-1-price')).toHaveText('฿12,943.80');
+    await expect(page.locator('#product-1-point')).toHaveText('129 Points');
+    await expect(page.locator('#product-1-quantity-input')).toHaveValue('3');
+    await expect(page.locator('#shopping-cart-subtotal-price')).toHaveText('฿12,943.80');
+  });
 });
 
