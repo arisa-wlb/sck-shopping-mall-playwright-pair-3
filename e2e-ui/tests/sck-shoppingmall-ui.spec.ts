@@ -16,17 +16,17 @@ test("Login สำเร็จด้วย username เท่ากับ user_1
     await page.locator("#search-product-input").press("Enter");
   });
 
-  await test.step("ตรวจสอบผลการค้นหาสินค้า และเข้าดูข้อมูลสินค้า", async () => {
+  await test.step("ตรวจสอบผลการค้นหาสินค้า พบชื่อสินค้า Balance Training Bicycle ราคา ฿4,314.60 และเข้าดูข้อมูลสินค้า", async () => {
     await expect(page.locator("#product-card-name-1")).toHaveText("Balance Training Bicycle");
     await expect(page.locator("#product-card-price-1")).toHaveText("฿4,314.60");
     await page.locator("#product-card-name-1").click();
   });
-  await test.step("ตรวจสอบข้อมูลราคา และแต้มที่จะได้รับ", async () => {
+  await test.step("ตรวจสอบข้อมูลสินค้าในหน้า Product Detail พบชื่อสินค้า Balance Training Bicycle ราคา ฿4,314.60 และแต้มที่จะได้รับ 43 Points", async () => {
     await expect(page.locator("#product-detail-product-name")).toHaveText("Balance Training Bicycle");
     await expect(page.locator("#product-detail-price-thb")).toHaveText("฿4,314.60");
     await expect(page.locator("#product-detail-point")).toHaveText("43 Points");
   })
-  await test.step("เลือกจำนวนสินค้า และกด Add to Cart", async () => {
+  await test.step("เพิ่มสินค้าลงตะกร้าเป็นจำนวน 3 ชิ้น", async () => {
     await page.locator("[id='product-detail-quantity-increment-btn']").click({ clickCount : 2});
     await page.locator("[id='product-detail-add-to-cart-btn']").click();
     await expect(page.locator("[id='header-menu-cart-badge']")).toHaveText('1');
